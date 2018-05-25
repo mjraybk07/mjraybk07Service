@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+const db = require('../database-mongodb');
+
 const app = express();
 const PORT = 3000;
 
