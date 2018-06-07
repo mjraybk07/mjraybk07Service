@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const faker = require('faker')
+const AccountOverview = require('./models/accountOverview');
 
 mongoose.connect('mongodb://localhost/test'); // TODO
 
@@ -10,37 +12,37 @@ db.once('open', () => console.log('mongoose db connection open..'));
 
 // ---- Account Overviews  -----
 
-const accountOverviewSchema = new mongoose.Schema(
-  {
-    startDate: Date,
-    endDate:  Date,
-    account_id: String,
-    title: String, 
-    description: String,
-    npsScoreCurrent:  String,
-    npsScoreHighest: 
-      {
-        npsScore:  String,
-        date: Date,
-        accountOverview_id: String
-      },
-    npsScoreLowest: 
-      {
-        npsScore:  String,
-        date: Date,
-        accountOverview_id: String
-      },
-    cases: [],
-    users: [],
-    numberOfCasesResolved:  String,
-    numberOfUsers: String,
-    numberOfMessages:  String,
-    averageTimeToMessageReponse: String,
-    averageTimeToCasesResolution: String  
-  }
-);
+// const accountOverviewSchema = new mongoose.Schema(
+//   {
+//     startDate: Date,
+//     endDate:  Date,
+//     account_id: String,
+//     title: String, 
+//     description: String,
+//     npsScoreCurrent:  String,
+//     npsScoreHighest: 
+//       {
+//         npsScore:  String,
+//         date: Date,
+//         accountOverview_id: String
+//       },
+//     npsScoreLowest: 
+//       {
+//         npsScore:  String,
+//         date: Date,
+//         accountOverview_id: String
+//       },
+//     cases: [],
+//     users: [],
+//     numberOfCasesResolved:  String,
+//     numberOfUsers: String,
+//     numberOfMessages:  String,
+//     averageTimeToMessageReponse: String,
+//     averageTimeToCasesResolution: String  
+//   }
+// );
 
-let AccountOverview = mongoose.model('AccountOverview', accountOverviewSchema);
+// let AccountOverview = mongoose.model('AccountOverview', accountOverviewSchema);
 
 const saveAccountOverview = (data, callback) => {
   console.log('Saving account overview..');
@@ -96,9 +98,10 @@ var testOverview =   {
     numberOfMessages:  '10101010',
     averageTimeToMessageReponse: '3 minutes',
     averageTimeToCasesResolution: '1 day'  
-  }
+  };
+  
+//saveAccountOverview(testOverview, (err, result) => console.log('saved data ...'))
 
-saveAccountOverview(testOverview, (err, result) => console.log('saved data ...'))
 
 module.exports = {
   db,
