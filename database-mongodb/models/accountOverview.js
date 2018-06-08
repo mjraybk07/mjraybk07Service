@@ -3,31 +3,32 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
   
+  createdAt: { type: Date, default: Date.now },
   startDate: Date,
   endDate:  Date,
-  account_id: String,
+  account_id: {type: Number, required: true},
   title: String, 
   description: String,
-  npsScoreCurrent:  String,
+  npsScoreCurrent:  Number,
   npsScoreHighest: 
     {
-      npsScore:  String,
+      npsScore:  Number,
       date: Date,
-      accountOverview_id: String
+      accountOverview_id: Number
     },
   npsScoreLowest: 
     {
-      npsScore:  String,
+      npsScore:  Number,
       date: Date,
-      accountOverview_id: String
+      accountOverview_id: Number
     },
-  cases: [],
-  users: [],
-  numberOfCasesResolved:  String,
-  numberOfUsers: String,
-  numberOfMessages:  String,
-  averageTimeToMessageReponse: String,
-  averageTimeToCasesResolution: String  
+  cases: [Number],
+  users: [Number],
+  numberOfCasesResolved:  Number,
+  numberOfUsers: Number,
+  numberOfMessages:  Number,
+  averageTimeToMessageReponse: Number,
+  averageTimeToCasesResolution: Number  
 
 });
 
