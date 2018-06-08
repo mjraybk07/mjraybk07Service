@@ -42,16 +42,12 @@ const createRandomEntry = () => {
   })
 }
 
-  
-//const accountOverview = new AccountOverview (testOverview);
-
-//db.saveAccountOverview(accountOverview, (err, result) => console.log('saved data ...', accountOverview))
 
 let done = 0;
 let len = 20000;
 
 for (var i = 0; i < len; i++) {
-  //overviews[i].save( (err, result) => {
+
   let randomEntry = createRandomEntry();
     
   randomEntry.save( (err, result) => {
