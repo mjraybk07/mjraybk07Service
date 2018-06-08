@@ -23,16 +23,6 @@ app.get('/', (req, res) => {
   res.send('GET reqeust received');
 });
 
-// TODO REMOVE DB TEST
-// app.get('/test', (req, res) => {
-//   db.getCats((err, results) => {
-//     if (err) {
-//       res.send(err);
-//     } else {
-//       res.send(results);
-//     }
-//   });
-// });
 
 app.post('/api/saveAccountOverview', (req, res) => {
   console.log('server post to req.body.overview to saveAccountOverview:', typeof req.body.overview )
@@ -50,7 +40,7 @@ app.post('/api/saveAccountOverview', (req, res) => {
 app.get('/api/getAllAccountOverviews', (req, res) => {
   db.getAllAccountOverviews( (error, result) => {
     if ( error ) {
-      res.status(404);
+      res.status(404).send('Invalid entry');
     } else {
       console.log('result: ', result)
       res.send(result)
