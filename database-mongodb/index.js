@@ -2,8 +2,12 @@ const mongoose = require('mongoose');
 const faker = require('faker')
 const AccountOverview = require('./models/accountOverview');
 
-mongoose.connect('mongodb://localhost/test'); // TODO
-
+const options = {
+  poolSize: 200
+}
+ 
+mongoose.connect('mongodb://localhost/mjraybk07ServiceDev', options); // TODO
+ 
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
