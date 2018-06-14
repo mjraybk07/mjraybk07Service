@@ -49,6 +49,18 @@ app.get('/api/getAllAccountOverviews', (req, res) => {
   });
 })
 
+
+app.get('/api/getAllAccountIds', (req,res) => {
+  db.getAllAccountIds( (error, result) => {
+    if ( error ) {
+      res.status(404).send('Invalid entry');
+    } else {
+      console.log('account ids: ', result)
+      res.send(result);
+    }
+  })
+})
+
 app.use(errorHandler);
 
 app.listen(PORT, () => {
