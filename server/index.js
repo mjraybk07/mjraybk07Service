@@ -61,6 +61,21 @@ app.get('/api/getAllAccountIds', (req,res) => {
   })
 })
 
+app.get('/api/getCasesByAccountId', (req, res) => {
+  let accountId = req.headers.accountid;
+  console.log(accountId)
+  
+  db.getCasesByAccountId(accountId, (error, result) => {
+    if ( error ) {
+      res.status(404).send(error);
+    } else {
+      res.send(result)
+    }
+  })  
+})
+
+
+
 app.use(errorHandler);
 
 app.listen(PORT, () => {
