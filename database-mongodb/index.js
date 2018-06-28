@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const faker = require('faker')
+const Account = require('./models/account');
 const AccountOverview = require('./models/accountOverview');
 
 const options = {
@@ -43,10 +44,27 @@ const getAllAccountOverviews = (callback) => {
   })
 }
 
+//  ---- Accounts ----
+
+const getAllAccountIds = (callback) => {
+  console.log('getting all account ids')
+  Account.find( (err, accounts) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      var arr = accounts.map( (account)=> {
+        return account._id;
+      })
+      callback(null, arr)
+    }
+  })
+}
+
 
 
 module.exports = {
   db,
   getAllAccountOverviews,
-  saveAccountOverview
+  saveAccountOverview,
+  getAllAccountIds
 };
