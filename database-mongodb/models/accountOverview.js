@@ -6,7 +6,7 @@ const schema = new Schema({
   createdAt: { type: Date, default: Date.now },
   startDate: Date,
   endDate:  Date,
-  account_id: {type: Number, required: true},
+  account_id: Schema.Types.ObjectId,
   title: String, 
   description: String,
   npsScoreCurrent:  Number,
@@ -14,16 +14,16 @@ const schema = new Schema({
     {
       npsScore:  Number,
       date: Date,
-      accountOverview_id: Number
+      accountOverview_id: Schema.Types.ObjectId
     },
   npsScoreLowest: 
     {
       npsScore:  Number,
       date: Date,
-      accountOverview_id: Number
+      accountOverview_id: Schema.Types.ObjectId
     },
-  cases: [Number],
-  users: [Number],
+  cases: [Schema.Types.ObjectId],
+  users: [Schema.Types.ObjectId],
   numberOfCasesResolved:  Number,
   numberOfUsers: Number,
   numberOfMessages:  Number,
