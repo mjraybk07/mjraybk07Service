@@ -477,6 +477,7 @@ const seedAllMessagesSTREAM = () => {
     exit()
     console.log('Done seeding messages.')
    })
+  
 }
   
   
