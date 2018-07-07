@@ -4,8 +4,10 @@ const morgan = require('morgan');
 
 const db = require('../database-mongodb');
 
+
 const app = express();
-const PORT = 3000;
+
+const PORT = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
 
@@ -19,9 +21,17 @@ function errorHandler(err, req, res, next) {
     res.status(500).send(err);
 }
 
-app.get('/', (req, res) => {
-  res.send('GET reqeust received');
+app.get('/status', (req, res) => {
+  const localTime = (new Date()).toLocaleTimeString();
+  
+  res.
+  status(200).
+  send(`Server time is ${localTime}`)
+  
 });
+
+
+
 
 
 app.post('/api/saveAccountOverview', (req, res) => {
@@ -50,7 +60,7 @@ app.get('/api/getAllAccountOverviews', (req, res) => {
 })
 
 
-app.get('/api/getAllAccountIds', (req,res) => {
+app.get('/api/getAllAccountIds', (req, res) => {
   db.getAllAccountIds( (error, result) => {
     if ( error ) {
       res.status(404).send('Invalid entry');
@@ -61,6 +71,23 @@ app.get('/api/getAllAccountIds', (req,res) => {
   })
 })
 
+
+app.get('/api/getAccountById', (req, res) => {
+  let accountId = req.headers.accountid;
+  console.log('this is the account id', accountId)
+  
+  db.getAccountById(accountId, (error, result) => {
+    if ( error ) {
+      res.status(404).send(error);
+    } else {
+      res.json(result)
+    }
+  })
+  
+})
+
+
+
 app.get('/api/getCasesByAccountId', (req, res) => {
   let accountId = req.headers.accountid;
   console.log(accountId)
@@ -69,11 +96,60 @@ app.get('/api/getCasesByAccountId', (req, res) => {
     if ( error ) {
       res.status(404).send(error);
     } else {
-      res.send(result)
+      res.json(result)
     }
   })  
 })
 
+app.get('/api/getUsersByAccountId', (req, res) => {
+  let accountId = req.headers.accountid;
+  console.log('account id: ', accountId);
+  
+  db.getUsersByAccountId(accountId, (error, result) => {
+    if ( error ) {
+      res.status(404).send(error);
+    } else {
+      res.json(result)
+    }
+  })
+})
+
+app.get('/api/getMessagesByAccountId', (req, res) => {
+  let accountId = req.headers.accountid;
+  console.log('account id: ', accountId);
+  
+  db.getMessagesByAccountId(accountId, (error, result) => {
+    if ( error ) {
+      res.status(404).send(error);
+    } else {
+      res.json(result);
+    }
+  }) 
+})
+
+
+
+app.get('/api/getAccountOverviewById', (req, res) => {
+  let accountId = req.headers.accountid;
+  console.log(`Getting account overview for account id ${accountId}`)
+  
+  // TODO
+  
+  db.getAccountOverviewById( accountId, (error, result) => {
+    if ( error ) {
+      res.status(404).send(error);
+    } else {
+      res.json(result);
+    }
+  })
+  
+})
+
+
+
+app.get('*', (req, res) => {
+  res.sendStatus(404);
+})
 
 
 app.use(errorHandler);
