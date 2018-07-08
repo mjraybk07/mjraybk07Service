@@ -133,8 +133,6 @@ app.get('/api/getAccountOverviewById', (req, res) => {
   let accountId = req.headers.accountid;
   console.log(`Getting account overview for account id ${accountId}`)
   
-  // TODO
-  
   db.getAccountOverviewById( accountId, (error, result) => {
     if ( error ) {
       res.status(404).send(error);
