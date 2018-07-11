@@ -17,7 +17,9 @@ exports.up = function(knex, Promise) {
     .createTable('accountOverviews', function(table) {
       table.increments('id').primary();
       table.timestamps();
-      table.integer('account_id');
+      table.date('start_date');
+      table.date('end_date');
+      table.integer('account_id').references('id_in_accounts');;
       table.integer('npsScoreCURRENT');
       table.integer('npsScorePREDICTED');
       table.integer('numberOfCases');
@@ -31,8 +33,10 @@ exports.up = function(knex, Promise) {
     .createTable('cases', function(table) {
       table.increments('id').primary();
       table.timestamps();
-      table.integer('account_id');
+      table.dateTime('resolved_at');
+      table.integer('account_id').references('id_in_accounts');;
       table.string('title');
+      table.string('text');
       table.integer('npsScoreCURRENT');
       table.integer('npsScorePREDICTED');
       table.boolean('resolved');
@@ -42,11 +46,11 @@ exports.up = function(knex, Promise) {
     .createTable('users', function(table) {
       table.increments('id').primary();
       table.timestamps();
-      table.integer('account_id');
+      table.integer('account_id').references('id_in_accounts');
       table.string('userName');
       table.string('jobTitle');
       table.string('jobType');
-      table.string('phone');
+      table.string('phoneNumber');
       table.string('email');
     }),
     
@@ -54,8 +58,8 @@ exports.up = function(knex, Promise) {
     .createTable('messages', function(table) {
       table.increments('id').primary();
       table.timestamps();
-      table.integer('case_id');
-      table.integer('account_id');
+      table.integer('case_id').references('id_in_cases');;
+      table.integer('account_id').references('id_in_accounts');;
       table.string('subject');
       table.string('message');
     })
