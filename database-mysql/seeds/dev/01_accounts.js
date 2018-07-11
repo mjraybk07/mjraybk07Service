@@ -17,7 +17,7 @@ const createAccount = function () {
   return account;
 }
 
-const batchSize = 1000000;
+const batchSize = 100000; // set total target to 1 million records here
 
 
 const createBatch = function () {  
