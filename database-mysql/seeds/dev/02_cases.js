@@ -45,11 +45,13 @@ const flatten = function (arr, result = []) {
   return result;
 };
 
-// get account Ids
-// iterate over list of Ids
-// create batches by Id
-// create final batch
-// batchInsert
+// delete the cases table
+// get all account Ids
+// for each account Id
+//   create batches of 10 cases for each account Id
+// flatten the array or bathes into a single level array
+// batchInsert the batch of cases into the cases table
+
 
 
 exports.seed = function(knex, Promise) {
