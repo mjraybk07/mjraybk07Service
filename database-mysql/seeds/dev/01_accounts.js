@@ -17,7 +17,7 @@ const createAccount = function () {
   return account;
 }
 
-const batchSize = 1000;
+const batchSize = 1000000;
 
 
 const createBatch = function () {  
@@ -42,7 +42,7 @@ exports.seed = function(knex, Promise) {
       return knex.batchInsert('accounts', batch, chunkSize)
         .returning('id')
         .then(function (ids) {
-          console.log('Batch insert successful');
+          console.log('Batch insert successful, batch: ', ids);
         })
         .catch( function (error) {
           console.log(error)
