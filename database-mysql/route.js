@@ -1,2 +1,0 @@
-const Model = require('./model')
-
