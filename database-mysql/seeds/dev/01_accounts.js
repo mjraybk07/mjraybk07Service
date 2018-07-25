@@ -4,6 +4,7 @@ const Chance = require('chance');
 let chance = new Chance();
 
 
+
 const createAccount = function () {
   let account = {
     created_at: faker.date.past(),
@@ -20,6 +21,7 @@ const createAccount = function () {
 const batchSize = 100000; // set total target to 1 million records here
 
 
+
 const createBatch = function () {  
   let result = []; 
   
@@ -32,6 +34,10 @@ const createBatch = function () {
 
 
 exports.seed = function(knex, Promise) {
+  
+  console.log('Starting clock, seeding accounts')
+  console.time('accounts time')  // start timer
+  
   // Deletes ALL existing entries
   return knex('accounts').del()
     .then(function () {
@@ -42,7 +48,10 @@ exports.seed = function(knex, Promise) {
       return knex.batchInsert('accounts', batch, chunkSize)
         .returning('id')
         .then(function (ids) {
-          console.log('Batch insert successful, batch: ', ids);
+          console.log('Batch insert successful, accounts batch: ', ids);
+          
+          console.log('Stopping clock, done seeding accounts')
+          console.timeEnd('accounts time')  // end timer
         })
         .catch( function (error) {
           console.log(error)

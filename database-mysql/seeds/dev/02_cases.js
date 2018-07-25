@@ -3,6 +3,8 @@ const Chance = require('chance');
 
 let chance = new Chance();
 
+
+
 const createCase = function (accountId) {
   
   let newCase = {
@@ -49,12 +51,17 @@ const flatten = function (arr, result = []) {
 // get all account Ids
 // for each account Id
 //   create batches of 10 cases for each account Id
-// flatten the array or bathes into a single level array
+// flatten the array or batches into a single level array
 // batchInsert the batch of cases into the cases table
 
 
 
 exports.seed = function(knex, Promise) {
+  
+  console.log('Starting clock, seeding cases')
+  console.time('cases time')  // start timer
+          
+          
   // Deletes ALL existing entries
   return knex('cases').del()
     .then(function () {
@@ -75,6 +82,9 @@ exports.seed = function(knex, Promise) {
         .returning('id')
         .then(function (ids) {
           console.log('Batch insert successful, cases batch: ', ids);
+          
+          console.log('Stopping clock, done seeding cases')
+          console.timeEnd('cases time')  // end timer
         })
         .catch( function (error) {
           console.log(error)
