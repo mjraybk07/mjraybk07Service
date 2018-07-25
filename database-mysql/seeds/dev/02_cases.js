@@ -81,7 +81,7 @@ exports.seed = function(knex, Promise) {
       return knex.batchInsert('cases', batch, chunkSize)
         .returning('id')
         .then(function (ids) {
-          console.log('Batch insert successful, cases batch: ', ids);
+          //console.log('Batch insert successful, cases batch: ', ids);
           
           console.log('Stopping clock, done seeding cases')
           console.timeEnd('cases time')  // end timer

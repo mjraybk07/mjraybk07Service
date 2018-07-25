@@ -75,7 +75,7 @@ exports.seed = function(knex, Promise) {
       return knex.batchInsert('messages', messages, 1000)
         .returning('id')
         .then( function (id) {
-          console.log('messages batch inserted id: ', id)
+          //console.log('messages batch inserted id: ', id)
         })
         .catch(function (err) {
           console.log(err)

@@ -35,7 +35,7 @@ const createBatch = function () {
 
 exports.seed = function(knex, Promise) {
   
-  console.log('Starting clock, seeding accounts')
+  console.log('Starting clock, seeding accounts', Date())
   console.time('accounts time')  // start timer
   
   // Deletes ALL existing entries
@@ -48,7 +48,7 @@ exports.seed = function(knex, Promise) {
       return knex.batchInsert('accounts', batch, chunkSize)
         .returning('id')
         .then(function (ids) {
-          console.log('Batch insert successful, accounts batch: ', ids);
+          //console.log('Batch insert successful, accounts batch: ', ids);
           
           console.log('Stopping clock, done seeding accounts')
           console.timeEnd('accounts time')  // end timer
