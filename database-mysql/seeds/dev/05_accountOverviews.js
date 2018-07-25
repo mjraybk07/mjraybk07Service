@@ -52,7 +52,7 @@ exports.seed = function(knex, Promise) {
       
     })
     .then(function() {
-      console.log('Stopping clock, done seeding accountOverviews')
+      console.log('Stopping clock, done seeding accountOverviews ', Date())
       console.timeEnd('accountOverviews time')  // end timer
     })
     .catch(function (err) {
