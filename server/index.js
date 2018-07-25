@@ -32,42 +32,42 @@ app.get('/status', (req, res) => {
 
 
 
-app.post('/api/saveAccountOverview', (req, res) => {
-  console.log('server post to req.body.overview to saveAccountOverview:', typeof req.body.overview )
-  db.saveAccountOverview( req.body.overview, (error, result) => {
-    if ( error ) {
-      res.status(404).send('Invalid entry')
-    } else {
-      console.log('result: ', result)
-      res.send(201)
-    }
+// app.post('/api/saveAccountOverview', (req, res) => {
+//   console.log('server post to req.body.overview to saveAccountOverview:', typeof req.body.overview )
+//   db.saveAccountOverview( req.body.overview, (error, result) => {
+//     if ( error ) {
+//       res.status(404).send('Invalid entry')
+//     } else {
+//       console.log('result: ', result)
+//       res.send(201)
+//     }
     
-  });
-})
+//   });
+// })
 
-app.get('/api/getAllAccountOverviews', (req, res) => {
-  db.getAllAccountOverviews( (error, result) => {
-    if ( error ) {
-      res.status(404).send('Invalid entry');
-    } else {
-      console.log('result: ', result)
-      res.send(result)
-    }
+// app.get('/api/getAllAccountOverviews', (req, res) => {
+//   db.getAllAccountOverviews( (error, result) => {
+//     if ( error ) {
+//       res.status(404).send('Invalid entry');
+//     } else {
+//       console.log('result: ', result)
+//       res.send(result)
+//     }
     
-  });
-})
+//   });
+// })
 
 
-app.get('/api/getAllAccountIds', (req, res) => {
-  db.getAllAccountIds( (error, result) => {
-    if ( error ) {
-      res.status(404).send('Invalid entry');
-    } else {
-      console.log('account ids: ', result)
-      res.send(result);
-    }
-  })
-})
+// app.get('/api/getAllAccountIds', (req, res) => {
+//   db.getAllAccountIds( (error, result) => {
+//     if ( error ) {
+//       res.status(404).send('Invalid entry');
+//     } else {
+//       console.log('account ids: ', result)
+//       res.send(result);
+//     }
+//   })
+// })
 
 
 app.get('/api/getAccountById', (req, res) => {
@@ -112,11 +112,24 @@ app.get('/api/getUsersByAccountId', (req, res) => {
   })
 })
 
-app.get('/api/getMessagesByAccountId', (req, res) => {
-  let accountId = req.headers.accountid;
-  console.log('account id: ', accountId);
+// app.get('/api/getMessagesByAccountId', (req, res) => {
+//   let accountId = req.headers.accountid;
+//   console.log('account id: ', accountId);
   
-  db.getMessagesByAccountId(accountId, (error, result) => {
+//   db.getMessagesByAccountId(accountId, (error, result) => {
+//     if ( error ) {
+//       res.status(404).send(error);
+//     } else {
+//       res.json(result);
+//     }
+//   }) 
+// })
+
+app.get('/api/getMessagesByUserId', (req, res) => {
+  let userId = req.headers.userid;
+  console.log('user id: ', userId);
+  
+  db.getMessagesByUserId(userId, (error, result) => {
     if ( error ) {
       res.status(404).send(error);
     } else {
