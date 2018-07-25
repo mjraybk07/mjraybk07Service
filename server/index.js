@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
-const db = require('../database-mongodb');
+//const db = require('../database-mongodb');
+const db = require('../database-mysql/database').bookshelf;
 
 
 const app = express();

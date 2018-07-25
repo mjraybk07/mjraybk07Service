@@ -33,7 +33,7 @@ const schema = new Schema({
   numberOfCases:  Number,
   numberOfUsers: Number,
   numberOfMessages:  Number,
-  averageTimeToMessageReponse: Number,
+  numberOfMessages: Number,
   averageTimeToCasesResolution: Number  
 
 });

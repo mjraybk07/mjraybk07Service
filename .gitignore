@@ -62,3 +62,8 @@ typings/
 
 # NPM files
 package-lock.json
+
+config/
+config.js
+dbConfig.js
+
