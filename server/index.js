@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 //const db = require('../database-mongodb');
-//const db = require('../database-mysql/database').bookshelf;
 const db = require('../database-mysql/database');
 
 const app = express();
