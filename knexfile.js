@@ -11,7 +11,6 @@ module.exports = {
   },
   seeds: {
     directory: './database-mysql/seeds/dev'
-  },
-  useNullAsDefault: true
+  }
   
 };
