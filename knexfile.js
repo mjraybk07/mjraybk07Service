@@ -1,5 +1,4 @@
 const dbConfig = require('./config/dbConfig');
-//const mysql = require('mysql')
 
 
 module.exports = {
